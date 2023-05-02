@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () =>{
+    let main = document.querySelector('.main')
     let heading = document.querySelector('.heading')
     let wrapper = document.querySelector('.wrapper')
     let front = document.querySelectorAll('.front')
@@ -16,48 +17,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     let container11 = document.querySelector('.container-11')
     let btnNext = document.getElementById('next')
     btnNext.disabled = true
-
-    let btnCreate = document.getElementById('createCard');
-
-    function createCard(container, cardNum = '1', cardCoupe, cardName = 'Name', cardIconSrc = './img/default-icon.svg'){
-        let card = document.createElement('div');
-        let front = document.createElement('div');
-        let number = document.createElement('span');
-        let back = document.createElement('div');
-        let icon = document.createElement('img');
-        let name = document.createElement('span');
-
-        card.classList.add('card', `card-${cardNum}`);
-        card.dataset.card = `card-${cardNum}`;
-        front.classList.add('front');
-        front.dataset.card = `card-${cardNum}`;
-        number.dataset.card = `card-${cardNum}`;
-        number.textContent = cardCoupe;
-        back.classList.add('back');
-        back.dataset.card = `card-${cardNum}`;
-        icon.setAttribute('src', `${cardIconSrc}`)
-        icon.classList.add('card-icon');
-        icon.dataset.card = `card-${cardNum}`;
-        name.dataset.card = `card-${cardNum}`;
-        name.textContent = cardName
-
-        front.appendChild(number)
-        back.appendChild(icon)
-        back.appendChild(name)
-        card.appendChild(front)
-        card.appendChild(back)
-
-        container.appendChild(card)
-    }
-
-    function createCardCoupe(container, cardCoupe = '0', cardName1, cardName2){
-        createCard(container, '1', cardCoupe, cardName1)
-        createCard(container, '2', cardCoupe, cardName2)
-    }
-
-    btnCreate.addEventListener('click',  function() {
-        createCardCoupe(container1, '1', 'Сидим дома', 'Идём гулять')
-    })
 
     document.addEventListener('click', (event) =>{
         const target = event.target.dataset.card
@@ -121,9 +80,14 @@ document.addEventListener('DOMContentLoaded', () =>{
             next(container9, container10)
         } else if(firstChild === container10){
             next(container10, container11)
-            heading.textContent = 'Супер приз!'
-            btnNext.disabled = false
-            btnNext.textContent = 'Перейти'
+            heading.textContent = 'Surprise!'
+            btnNext.style.display = 'none'
+            let link = document.createElement('a')
+            link.setAttribute('href', "https://media.tenor.com/elWu7_2H9vAAAAAC/obnimashki-milo.gif")
+            link.classList.add('btn-link')
+            link.textContent = 'Follow'
+
+            main.appendChild(link)
         }
     })
 });
